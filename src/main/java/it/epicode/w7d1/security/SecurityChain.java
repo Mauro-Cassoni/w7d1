@@ -25,6 +25,7 @@ public class SecurityChain {
 
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll());
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/dipendente/**").permitAll());
+        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/dispositivo/**").permitAll());
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").denyAll());
 
         return httpSecurity.build();
