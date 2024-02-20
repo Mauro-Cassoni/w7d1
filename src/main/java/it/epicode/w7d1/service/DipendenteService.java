@@ -49,7 +49,7 @@ public class DipendenteService {
         a.setCognome(dipendenteRequest.getCognome());
         a.setEmail(dipendenteRequest.getEmail());
         a.setUsername(dipendenteRequest.getUsername());
-        a.setPassword(dipendenteRequest.getPassword());
+        a.setPassword(passwordEncoder.encode(dipendenteRequest.getPassword()));
 
 
         return dipendenteRepository.save(a);
