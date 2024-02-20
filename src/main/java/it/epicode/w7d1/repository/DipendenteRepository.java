@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface DipendenteRepository extends JpaRepository<Dipendente, Integer>, PagingAndSortingRepository<Dipendente, Integer> {
     public Optional<Dipendente> findByUsername(String username);
+
+    public Optional<Dipendente> deleteByUsername(String username);
 }

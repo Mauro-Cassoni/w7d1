@@ -86,7 +86,7 @@ public class DipendenteController {
     public ResponseEntity<CustomResponse> deleteDipendente(@PathVariable int id) {
         try{
             dipendenteService.deleteDipendente(id);
-            return CustomResponse.emptyResponse("Dipendente con id=" + id + " cancellata", HttpStatus.OK);
+            return CustomResponse.emptyResponse("Dipendente con id=" + id + " cancellato", HttpStatus.OK);
         }
         catch (NotFoundException e){
             return CustomResponse.error(e.getMessage(), HttpStatus.NOT_FOUND);

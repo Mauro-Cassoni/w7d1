@@ -8,6 +8,7 @@ import it.epicode.w7d1.request.LoginRequest;
 import it.epicode.w7d1.security.JwtTools;
 import it.epicode.w7d1.service.DipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,8 @@ public class AuthController {
     private DipendenteService dipendenteService;
     @Autowired
     private JwtTools jwtTools;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @PostMapping("/register")
     public Dipendente register(@RequestBody @Validated DipendenteRequest dipendenteRequest, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -40,7 +43,7 @@ public class AuthController {
 
         Dipendente dipendente = dipendenteService.getDipendenteByUsername(loginRequest.getUsername());
 
-        if(dipendente.getPassword().equals(loginRequest.getPassword())){
+        if(passwordEncoder.matches(loginRequest.getPassword(), dipendente.getPassword())){
             return jwtTools.createToken(dipendente);
         }
         else{

@@ -4,5 +4,6 @@ public enum Disponibilita {
     DISPONIBILE,
     ASSEGNATO,
     IN_MANUTENZIONE,
-    DISMESSO
+    DISMESSO;
+
 }

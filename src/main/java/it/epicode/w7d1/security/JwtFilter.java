@@ -40,9 +40,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String username = jwtTools.extractUsernameFromToken(token);
 
-        Dipendente utente = dipendenteService.getDipendenteByUsername(username);
+        Dipendente dipendente = dipendenteService.getDipendenteByUsername(username);
 
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(utente, null);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(dipendente, null, dipendente.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
